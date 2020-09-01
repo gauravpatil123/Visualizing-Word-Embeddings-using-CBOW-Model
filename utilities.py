@@ -108,11 +108,58 @@ def get_batches(data, word_to_index, V, C, batch_size):
 def pca(data, num_dims=2):
     """
     Input:
-        data:
-        num_dims:
+        data: data corpus of dimension (m, n) where each row corresponding to a words vector
+        num_dims: number of dimensions/components you want to keep
     
     Output:
-        #####
+        collapsed_X = data transformed into num_dims dims/columns + regenerated original data 
+        pass in: data as 2D numpy array
     """
+    m, n = data.shape
+
+    # mean centering the data
+    data -= data.mean(axis=0)
+
+    # covariance matrix
+    COV = np.cov(data, rowvar=False)
+
+    # calculating eigenvectors & eigenvalues of covariance matrix
+    evals, evecs = linalg.eigh(COV)
+
+    # sorting eigenvalues in decending order
+    # to return the corresponding indices of evals and evecs
+    indices = np.argsort(evals)[::-1]
+    evecs = evecs[:, indices]
+
+    # sorting eigenvectors according to same  indices
+    evals = evals[indices]
+
+    # selecting first n eigenvectors (n = num_dims od rescaled data array)
+    evecs = evecs[:, :num_dims]
+
+    return np.dot(evecs.T, data.T).T
+
+# 7. get dictionaries function
+def get_dictionaries(data):
+    """
+    Input:
+        data: the data corpus
     
+    Output:
+        word_to_index: dictionary mapping word to index
+        index_to_word: dictionary mapping index to word
+    """
+    words = sorted(list(set(data)))
+    n = len(words)
+    index = 0
+
+    word_to_index = {}
+    index_to_word = {}
+    for word in words:
+        word_to_index[word] = index
+        index_to_word[index] = word
+        index += 1
+    return word_to_index, index_to_word
+
+
 

@@ -9,8 +9,8 @@ logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 # 1. Loading and processing dataset and extarcting parameters
 
-data = DP.ProcessData("data") # <-- TODO: input dataset dir path
-# prints dataset sumamry
+data = DP.ProcessData("data/data.txt")
+# prints dataset summary
 data.summary()
 processed_data = data.get_processed_data()
 freq_dist = data.get_freq_distribution()
@@ -41,4 +41,7 @@ X_2D = pca(X, 2)
 
 # reducing the dimentions of embeddings to 3
 X_3D = pca(X, 3)
+
+plot = PC.Plot(X_2D, most_common_words, "blue", 'o', 100)
+
 

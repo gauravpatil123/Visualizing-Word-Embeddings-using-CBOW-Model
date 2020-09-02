@@ -33,23 +33,23 @@ class Model:
         self.b1 = b1
         self.b2 = b2
 
-    def sigmoid(z):
-    """
-    Input:
-        z: input neuron/s
+    def sigmoid(self, z):
+        """
+        Input:
+            z: input neuron/s
     
-    Output:
-        sigmoid_z: sigmoid activation of z
-    """
-    sigmoid_z = 1.0 / (1.0 + np.exp(-z))
-    return sigmoid_z
+        Output:
+            sigmoid_z: sigmoid activation of z
+        """
+        sigmoid_z = 1.0 / (1.0 + np.exp(-z))
+        return sigmoid_z
 
-    def softmax(z):
+    def softmax(self, z):
         e = np.exp(z)
         y_hat = e / np.sum(e, axis=0)
         return y_hat
 
-    def relu(z):
+    def relu(self, z):
         h = np.maximum(0, z)
         return h
 
@@ -59,7 +59,7 @@ class Model:
         z = np.dot(W2, h) + b2
         return z, h
 
-    def cost(y, y_hat, batch_size):
+    def cost(self, y, y_hat, batch_size):
         log_p = np.multiply(np.log(y_hat), y) + np.multiply(np.log(1-y_hat), 1-y)
         c = -1 / batch_size * np.sum(log_p)
         c = np.squeeze(c)
@@ -71,7 +71,7 @@ class Model:
         grad_W1 = (1 / batch_size) * np.dot(l1, x.T)
         grad_W2 = (1 / batch_size) * np.dot(y_hat-y, h.T)
         grad_b1 = np.sum((1 / batch_size) * np.dot(l1, x.T), axis=1, keepdims=True)
-        grad_b2 = np.sum((1 / batch_size) * np.(y_hat - y, h.T), axis=1, keepdims=True)
+        grad_b2 = np.sum((1 / batch_size) * np.dot(y_hat - y, h.T), axis=1, keepdims=True)
         return grad_W1, grad_W2, grad_b1, grad_b2
 
     def gradient_descent(self, data, word_to_index, num_iters, batch_size, alpha=0.03, C=2):
@@ -83,7 +83,7 @@ class Model:
             y_hat = self.softmax(z)
             cost = self.cost(y, y_hat, batch_size)
             if ((iterations + 1) % 10 == 0):
-                iteration_log = f"iteration: {iters + 1} cost: {cost:.6f}"
+                iteration_log = f"iteration: {iterations + 1} cost: {cost:.6f}"
                 logging.info(iteration_log)
 
             # backprop gradients

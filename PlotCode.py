@@ -16,9 +16,11 @@ class Plot:
         plt.figure(figsize=(50, 30), dpi=120)
         plt.scatter(X[:, 0], X[:, 1], c=color1, marker=marker1)
         for i , word in enumerate(words):
-            plt.annotate(word, xy=(X[i, 0], X[i, 1]))
+            plt.annotate(word, xy=(X[i, 0], X[i, 1]), fontsize=20)
         plt.title(r"Word embeddings of most common words after " + str(iters) + r"iterations")
         plt.savefig("Images/2D_word_embeddings_num_iters_"+str(iters)+".png")
 
+    """
     def plot_3D(self):
         ###
+    """

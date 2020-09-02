@@ -9,7 +9,7 @@ logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 # 1. Loading and processing dataset and extarcting parameters
 
-data = DP.ProcessData("data/data.txt")
+data = DP.ProcessData("data/data.txt") # TODO: change dataset to something more appropriate
 # prints dataset summary
 data.summary()
 processed_data = data.get_processed_data()
@@ -18,14 +18,14 @@ word_to_index, index_to_word = data.get_dicts()
 V = data.get_vocab_size()
 
 # 2. Initializing and training the model
-model = M.Model(N=50, V)
-model.gradient_descent(processed_data, word_to_index, num_iters=100, batch_size=128)
+model = M.Model(N=50, V=V)
+model.gradient_descent(processed_data, word_to_index, num_iters=500, batch_size=128)
 
 # 3. Extracting word embeddings from trained model
 embeddings = model.get_word_embeddings()
 
 # 4. Getting most common words to plot embeddings
-most_common_words, _ = data.most_common_words_and_counts(num=20)
+most_common_words, _ = data.most_common_words_and_counts(num=250)
 
 indices = data.get_indices_of_words(most_common_words)
 
@@ -43,5 +43,7 @@ X_2D = pca(X, 2)
 X_3D = pca(X, 3)
 
 plot = PC.Plot(X_2D, most_common_words, "blue", 'o', 100)
+plot.plot_2D()
+
 
 

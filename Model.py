@@ -83,7 +83,7 @@ class Model:
             y_hat = self.softmax(z)
             cost = self.cost(y, y_hat, batch_size)
             if ((iterations + 1) % 10 == 0):
-                iteration_log = f"iters: {iters + 1} cost: {cost:.6f}"
+                iteration_log = f"iteration: {iters + 1} cost: {cost:.6f}"
                 logging.info(iteration_log)
 
             # backprop gradients
@@ -104,6 +104,9 @@ class Model:
             if iterations % 100 == 0:
                 alpha *= 0.66
 
+    def get_word_embeddings(self):
+        embeddings = (self.W1.T + self.W2) / 2.0
+        return embeddings
         
 
 

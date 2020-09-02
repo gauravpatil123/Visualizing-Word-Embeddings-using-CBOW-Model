@@ -45,6 +45,16 @@ class ProcessData:
     def get_vocab_size(self):
         return self.V
 
+    def most_common_words_and_counts(self, num=20):
+        freq_dist = self.freq_dist
+        common_words_with_count = freq_dist.most_common(num)
+        most_common_words = [word for word, count in common_words_with_count]
+        return most_common_words, common_words_with_count
+
+    def get_indices_of_words(self, words):
+        indices = [self.word_to_index[word] for word in words]
+        return indices
+
     def summary(self, num_data_tokens=15, num_most_common_words=20):
         data_log = "\nNumber of tokens: " + str(len(self.data))
         logging.info(data_log)
@@ -54,6 +64,7 @@ class ProcessData:
         logging.info(vocab_size_log)
         frequent_token_log = "\nMost frequenct tokens: " + str(self.freq_dist.most_common(num_most_common_words))
         logging.info(frequent_token_log)
+
 
 
 

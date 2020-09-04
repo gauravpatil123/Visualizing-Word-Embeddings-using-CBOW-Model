@@ -55,14 +55,14 @@ class ProcessData:
         indices = [self.word_to_index[word] for word in words]
         return indices
 
-    def summary(self, num_data_tokens=15, num_most_common_words=20):
+    def summary(self, num_data_tokens=15, num_most_common_words=200):
         data_log = "\nNumber of tokens: " + str(len(self.data))
         logging.info(data_log)
         data_token_logs = "\n" + str(self.data[:num_data_tokens])
         logging.info(data_token_logs)
         vocab_size_log = "\nSize of vocabulary: " + str(len(self.freq_dist))
         logging.info(vocab_size_log)
-        frequent_token_log = "\nMost frequenct tokens: " + str(self.freq_dist.most_common(num_most_common_words))
+        frequent_token_log = "\nMost frequenct tokens: " + str(self.freq_dist.most_common(num_most_common_words)) + "\n"
         logging.info(frequent_token_log)
 
 

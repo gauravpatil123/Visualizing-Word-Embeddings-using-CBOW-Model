@@ -1,11 +1,35 @@
+"""
+PlotCode:
+    1. Defines the Plot class to create 2D and 3D plots of word embeddings
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits import mplot3d
 
 class Plot:
 
+    """
+    class to plot the word embeddings
+    """
+
     def __init__(self, data_points, select_data_points, 
                     words, select_words, color1, color2, marker1, marker2, iters):
+        """
+        Inputs:
+            data_points: Set of datapoints to be plotted
+            select_data_points: Set of special datapoints to be plotted
+            words: words (labels) corresponding to the data_points
+            select_words: words (labels) corresponding to the select_data_points
+            color1: color to be used to plot data_points
+            color2: color to be used to plot select_data_points
+            marker1: marker to be used to plot data_points
+            marker2: marker to be used to plot select_data_points
+            iters: string to identify number of iterations of training done to get the data_points
+
+        Action:
+            Initializes the inputs to the class
+        """
         self.data_points = data_points
         self.select_data_points = select_data_points
         self.words = words
@@ -17,6 +41,9 @@ class Plot:
         self.select_words = select_words
 
     def plot_2D(self):
+        """
+        Creates and saves a 2D word embedding plot to 'Images/2D' directory
+        """
         X, XS = self.data_points, self.select_data_points
         color1, color2 = self.color1, self.color2
         words, marker1, marker2 = self.words, self.marker1, self.marker2
@@ -38,6 +65,9 @@ class Plot:
 
     
     def plot_3D(self):
+        """
+        Creates and saves a 3D word embedding plot to 'Images/3D' directory
+        """
         X, XS = self.data_points, self.select_data_points
         color1, color2 = self.color1, self.color2
         words, marker1, marker2 = self.words, self.marker1, self.marker2

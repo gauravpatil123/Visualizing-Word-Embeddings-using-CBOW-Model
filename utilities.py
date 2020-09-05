@@ -1,3 +1,7 @@
+"""
+utilities:
+    1. bundle of utility functions to be called globally for this project
+"""
 import numpy as np
 from scipy import linalg
 from collections import defaultdict
@@ -85,14 +89,14 @@ def get_vectors(data, word_to_index, V, C):
 def get_batches(data, word_to_index, V, C, batch_size):
     """
     Input:
-        data:
-        word_to_index:
-        V:
-        C:
-        batch_size:
+        data: processed dataset
+        word_to_index: dictionary that maps words to index
+        V: number of unique words in corpus
+        C: number of context words on each side
+        batch_size: custom batch size for training
 
     Output:
-
+        1. yields x, y batch and label one at a time
     """
     x_batch = []
     y_batch = []

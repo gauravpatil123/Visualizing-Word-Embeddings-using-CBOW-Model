@@ -1,3 +1,13 @@
+"""
+TrainModel:
+    1. defines the format and level of basic logger
+    2. loads and processes the dataset and extracts several parameters
+    3. Initilaizes the model
+    4. Defines the train_model function to train the initialized model
+    5. Gets the most common words and defines select words alog woth their corresponding indices
+    6. Trains the model and generates plots for the word embeddings
+"""
+
 import numpy as np
 import DatasetProcessing as DP
 import Model as M
@@ -7,7 +17,7 @@ from utilities import pca
 
 logging.basicConfig(format="%(message)s", level=logging.INFO)
 
-# 1. Loading and processing dataset and extarcting parameters
+# 1. Loading and processing dataset and extracting parameters
 
 data = DP.ProcessData("data/data.txt") # TODO: change dataset to something more appropriate
 # prints dataset summary
@@ -23,6 +33,23 @@ model = M.Model(N=50, V=V)
 def train_model(model, data, w2i, iterations, batch_size, selected_words,
                 most_common_words, indices, select_indices,
                 create_plot=False, verbose=False):
+    """
+    Inputs:
+        model: a shallow neural netword model of class Model
+        data: processed dataset
+        w2i: dictionary that maps word to index
+        iterations: number of iterations for training
+        batch_size: batch size to divide the training set into batches
+        selected_words: few choosen words from the vocabulary
+        most_common_words: most common words from the dataset
+        indices: indices of the most common words 
+        select_indices: indices of the selected words
+        create_plot: boolean to decide whether to create plots, defaults to False
+        verbose: boolean to decide whether to display info logs, defaults to False
+
+    Action:
+        Trains the model according to the given input parameters
+    """
     num_iter = 0
     Model = model
     while(iterations != num_iter):

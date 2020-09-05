@@ -54,6 +54,12 @@ def train_model(model, data, w2i, iterations, batch_size, selected_words,
             plot = PC.Plot(X_2D,XS_2D, most_common_words, selected_words, 
                             "blue", "green", "o", "o", num_iter)
             plot.plot_2D()
+
+            if (num_iter % 50 == 0):
+
+                plot3d = PC.Plot(X_3D, XS_3D, most_common_words, selected_words,
+                                "blue", "green", "o", "o", num_iter)
+                plot3d.plot_3D()
     
     model = Model
 

@@ -9,6 +9,9 @@ Visualizing word embeddings by implementing the CBOW (continious bag of words) m
 - Model : class to define the shallow neural network model, gradient descent and word embeddings
 - PlotCode : class to generate and save 2D and 3D plots of the word embeddings from the trained model
 
+**Utility**
+- utilities : bundle of helper functions for global use in this project
+
 **Executables**
 - TrainModel : Initializes and trains the neural network, extracts word embeddings and generates 2D and 3D plots to visualize the word embeddings
 
